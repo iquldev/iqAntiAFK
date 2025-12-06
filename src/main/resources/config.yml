@@ -1,0 +1,46 @@
+# iqAntiAFK Configuration
+
+# Language Setting
+# Available: en_US, ru_RU
+language: en_US
+
+# Roles and their specific settings
+# permissions: iqantiafk.role.<name>
+# You can add as many roles as you want here.
+# The plugin will pick the role with the LONGEST afk-time (or -1 bypass) if a player has multiple permissions.
+roles:
+  default:
+    afk-time: 300 # Seconds before AFK status
+    action: KICK # KICK, WARN, NONE
+    kick-message: "&cYou have been kicked for AFK."
+    warn-message: "&eYou are about to be kicked for AFK."
+  admin:
+    afk-time: -1 # Disabled
+    action: NONE
+
+# Global Settings
+check-interval: 5 # Seconds between checks. Lower = more CPU, Higher = less accuracy.
+
+# Activity Detection Thresholds
+# Movements smaller than these values will be IGNORED and will not reset the AFK timer.
+# This helps catch "Anti-AFK" mods that just jitter the head or jump in place.
+activity-thresholds:
+  min-rotation: 10.0 # Degrees. Player must rotate at least this much.
+  min-movement: 0.1 # Blocks. Player must move at least this much horizontally.
+  ignore-jumping-in-place: true # If true, purely vertical movement (like auto-jump) won't reset AFK.
+
+# Suspicion Settings
+suspicion:
+  enabled: true
+  threshold: 20 # points required to trigger action
+  decay: 1 # points removed per check-interval if active
+  actions:
+    - "notify_admins &cPlayer %player% is acting suspiciously (Probable Macro/Bot)!"
+    - "log_suspicion"
+    - "kick &cSuspicious activity detected (Bot/Macro)!"
+  weights:
+    regular-movement: 2 # Moving exactly same distance repeatedly
+    regular-rotation: 2 # Rotating exactly same amount repeatedly
+    rapid-clicking: 5 # Clicking > 15 CPS consistently
+    farming-afk: 1 # Standing in one spot but clicking/interacting
+

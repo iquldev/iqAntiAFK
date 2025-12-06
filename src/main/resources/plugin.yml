@@ -1,0 +1,38 @@
+main: iquldev.iqantiafk.iqAntiAFK
+version: 1.0
+name: iqAntiAFK
+author: iquldev
+api-version: 1.17
+permissions:
+  iqantiafk.whoafk:
+    description: Allows use of /whoafk
+    default: op
+  iqantiafk.activity:
+    description: Allows use of /activity
+    default: op
+  iqantiafk.bypass:
+    description: Bypasses AFK checks
+    default: false
+  iqantiafk.role.vip:
+    description: VIP role for AFK timers
+    default: false
+  iqantiafk.role.admin:
+    description: Admin role for AFK timers
+    default: op
+  iqantiafk.notify:
+    description: Receive notifications about suspicious players
+    default: op
+  iqantiafk.reload:
+    description: Allows reloading the plugin
+    default: op
+commands:
+  whoafk:
+    description: List AFK players
+    usage: /whoafk
+  activity:
+    description: Check player activity detail
+    usage: /activity <player>
+  iqantiafk:
+    description: Main plugin command
+    aliases: [iqaa]
+    usage: /iqantiafk <reload>
